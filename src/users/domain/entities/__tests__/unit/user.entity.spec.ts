@@ -1,18 +1,12 @@
 import { UserEntity, UserProps } from '@/src/users/domain/entities/user.entity'
-import { faker } from '@faker-js/faker/locale/pt_BR'
+import { UserDataBuilder } from '@/src/users/testing/helpers/user-data-builder'
 
 describe('UserEntity unit test', () => {
     let props: UserProps
     let sut: UserEntity
 
     beforeEach(() => {
-        props = {
-            name: faker.person.fullName(),
-            email: faker.internet.email(),
-            password: faker.internet.password(),
-            createdAt: faker.date.past(),
-        }
-
+        props = UserDataBuilder({})
         sut = new UserEntity(props)
     })
 
@@ -23,25 +17,25 @@ describe('UserEntity unit test', () => {
         expect(sut.props.createdAt).toBeInstanceOf(Date)
     })
 
-    it('Should Gets name defined', () =>{
+    it('Should Gets name defined', () => {
         expect(sut.name).toBeDefined()
         expect(sut.name).toEqual(props.name)
         expect(typeof sut.props.name).toBe('string')
     })
 
-    it('Should Gets email defined', () =>{
+    it('Should Gets email defined', () => {
         expect(sut.email).toBeDefined()
         expect(sut.email).toEqual(props.email)
         expect(typeof sut.props.email).toBe('string')
     })
 
-    it('Should Gets password defined', () =>{
+    it('Should Gets password defined', () => {
         expect(sut.password).toBeDefined()
         expect(sut.password).toEqual(props.password)
         expect(typeof sut.props.password).toBe('string')
     })
 
-    it('Should Gets createdAt defined', () =>{
+    it('Should Gets createdAt defined', () => {
         expect(sut.createdAt).toBeDefined()
         expect(sut.props.createdAt).toBeInstanceOf(Date)
     })
