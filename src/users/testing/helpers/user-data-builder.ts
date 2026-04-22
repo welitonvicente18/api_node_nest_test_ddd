@@ -14,5 +14,5 @@ export function UserDataBuilder(props: Props): UserProps {
         email: props.email ?? faker.internet.email(),
         password: props.password ?? faker.internet.password(),
         createdAt: props.createdAt ?? faker.date.past(),
-    }
+    } as Required<{ id: string } & Props>
 }
